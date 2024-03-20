@@ -13,7 +13,11 @@ contract QiteSwap {
         require(token1 != token2, "Identical address is not allowed");
         require(address(getPair[token1][token2]) == address(0),"Pair already exists");
 
-        QitePool qitePool = new QitePool();
+        string memory liquidityTokenName = string(abi.encodePacked("Liquidity",token1Name,"-",token2Name));
+        string memory liquidityTokenSymbol = string(abi.encodePacked("LP",token1Name,"-",token2Name));
+
+
+        QitePool qitePool = new QitePool(token1,token2,liquidityTokenName,liquidityTokenSymbol);
         getPair[token1][token2] = qitePool;
         getPair[token2][token1] = qitePool;
         allPairs.push(address(qitePool));
