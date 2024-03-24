@@ -11,7 +11,7 @@ import { ethers } from "ethers"
 
 export default function LiquidityPools() {
     const { chainID: chainIdHex, isWeb3Enabled, account } = useMoralis()
-    const qiteContractAddress = "0x956DC5D405D520E0bC9e662307435D655e9Da441"
+    const qiteContractAddress = "0x31B102BA0766cfe7595e7529292F8D5a7Fb74587"
 
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [pools, setPools] = useState([])
@@ -158,12 +158,14 @@ export default function LiquidityPools() {
                     contractAddress: selectedPool,
                 },
             })
+
             const isToken1Approved = await checkAllowance(
                 token1Address,
                 account,
                 selectedPool,
                 ethers.utils.parseEther(liquidityAmountToken1)
             )
+
             const isToken2Approved = await checkAllowance(
                 token2Address,
                 account,
